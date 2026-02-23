@@ -3,116 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="title">சிதம்பரம் ஸ்டோர் - நம்ம கடை</title>
+  <title>சிதம்பரம் ஸ்டோர் - நம்ம கடை</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --bg: #fdfdfd;
-      --surface: #ffffff;
-      --text: #1e293b;
-      --text-muted: #475569;
+      --bg: linear-gradient(to bottom, #f0fdfa, #ffffff);
+      --card-bg: rgba(255,255,255,0.98);
+      --text: #1f2937;
       --primary: #0f766e;
       --accent: #e07a5f;
-      --border: #e2e8f0;
-      --radius: 1.25rem;
-      --shadow: 0 4px 20px rgba(15,118,110,0.12);
+      --border: rgba(15,118,110,0.12);
+      --shadow: 0 6px 24px rgba(15,118,110,0.08);
+      --radius: 1.5rem;
+      --transition: all 0.3s ease;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Manrope', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.8;
+      min-height: 100vh;
+      background-size: cover;
     }
     body.tamil { font-family: 'Noto Sans Tamil', sans-serif; }
     header {
-      background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
+      background: linear-gradient(to bottom, #0f766e, #059669);
       color: white;
-      padding: 7rem 1.5rem 5rem;
+      padding: 8rem 2rem 6rem;
       text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
     }
-    .store-name { font-size: clamp(3.8rem, 12vw, 7rem); font-weight: 900; letter-spacing: -1px; }
-    .main-slogan { font-size: clamp(2.2rem, 8vw, 4rem); font-weight: 700; margin: 1.2rem 0 2rem; }
+    .store-name { font-size: clamp(4rem, 12vw, 7rem); font-weight: 900; letter-spacing: -0.05rem; text-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+    .main-slogan { font-size: clamp(2.2rem, 7vw, 4rem); font-weight: 700; margin: 1.5rem 0; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
     .lang-toggle {
       position: fixed; top: 1.5rem; right: 1.5rem; z-index: 9999;
       background: white; color: var(--primary); padding: 0.8rem 1.6rem;
       border-radius: 999px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: all 0.3s;
+      box-shadow: var(--shadow); transition: var(--transition);
     }
     .lang-toggle:hover { background: var(--primary); color: white; transform: scale(1.05); }
-    nav {
-      background: white; border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; z-index: 900; padding: 1rem 0;
-    }
-    nav ul { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; list-style: none; }
-    nav a { color: var(--text); font-weight: 500; text-decoration: none; padding: 0.6rem 1.4rem; border-radius: 0.8rem; }
-    nav a:hover { background: rgba(15,118,110,0.1); color: var(--primary); }
-    .hero {
-      padding: 6rem 1.5rem; text-align: center;
-      background: linear-gradient(rgba(15,118,110,0.08), rgba(255,255,255,0.4)),
-                  url('https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80') center/cover;
-    }
+    nav { background: white; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 900; padding: 1.2rem 0; }
+    nav ul { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.8rem; list-style: none; }
+    nav a { color: var(--text); font-weight: 500; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 1rem; transition: var(--transition); }
+    nav a:hover { background: rgba(15,118,110,0.08); color: var(--primary); }
+    .hero { padding: 7rem 2rem; text-align: center; background: var(--bg); }
     .hero h1 { font-size: clamp(3.5rem, 10vw, 6rem); color: var(--primary); font-weight: 800; }
     .hero p { font-size: 1.5rem; color: #334155; max-width: 800px; margin: 1.5rem auto; }
-    section { padding: 6rem 1.5rem; }
-    h2 { font-size: 2.8rem; color: var(--primary); text-align: center; margin-bottom: 3rem; }
-    .about-content {
-      max-width: 960px; margin: 0 auto; font-size: 1.18rem; color: #334155;
-      line-height: 1.9;
+    section { padding: 7rem 2rem; }
+    h2 { font-size: 3rem; color: var(--primary); text-align: center; margin-bottom: 3.5rem; font-weight: 700; }
+    .about-content { max-width: 1000px; margin: 0 auto; font-size: 1.15rem; color: #334155; line-height: 1.9; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+    .subsection-button {
+      background: var(--card-bg); border-radius: var(--radius);
+      padding: 1.5rem; text-align: center; cursor: pointer;
+      box-shadow: var(--shadow); transition: var(--transition);
+      font-size: 1.4rem; font-weight: 600; color: var(--primary);
     }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .card {
-      background: white; border-radius: var(--radius); overflow: hidden;
-      border: 1px solid var(--border); box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-    .card:hover { transform: translateY(-12px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
-    .card img { width: 100%; height: 240px; object-fit: cover; }
-    .card h3 { padding: 1.4rem; text-align: center; font-size: 1.35rem; color: var(--primary); font-weight: 600; }
+    .subsection-button:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(15,118,110,0.18); background: rgba(15,118,110,0.03); }
     .modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
       display: none; align-items: center; justify-content: center; z-index: 2000;
     }
     .modal.active { display: flex; }
     .modal-content {
-      background: white; width: 90%; max-width: 960px; max-height: 90vh;
-      border-radius: var(--radius); overflow-y: auto; padding: 2.2rem;
+      background: white; width: 90%; max-width: 900px; max-height: 90vh;
+      border-radius: var(--radius); overflow-y: auto; padding: 2rem;
       box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
-    .modal-title { font-size: 2.4rem; color: var(--primary); margin-bottom: 1.8rem; text-align: center; font-weight: 700; }
-    .close-btn { float: right; font-size: 2.8rem; cursor: pointer; color: #64748b; line-height: 1; }
-    .modal-search {
-      width: 100%; padding: 1rem; font-size: 1.15rem;
-      border: 1px solid #cbd5e1; border-radius: 0.8rem; margin-bottom: 2rem;
-    }
+    .modal-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 1.5rem; text-align: center; }
+    .close-btn { float: right; font-size: 2.5rem; cursor: pointer; color: #64748b; }
+    .modal-search { width: 100%; padding: 1rem; font-size: 1.1rem; border: 1px solid #cbd5e1; border-radius: 0.8rem; margin-bottom: 1.5rem; }
     .subsection-title {
-      font-size: 1.55rem; font-weight: 700; color: var(--primary);
-      margin: 2.2rem 0 1.2rem; padding-bottom: 0.6rem;
-      border-bottom: 2px solid rgba(15,118,110,0.18);
+      font-size: 1.5rem; font-weight: 700; color: var(--primary);
+      margin: 1.8rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(15,118,110,0.1);
     }
-    .modal-list { list-style: none; padding: 0; margin: 0; }
-    .modal-list li {
-      padding: 1rem 1.3rem; font-size: 1.12rem; background: rgba(15,118,110,0.03);
-      margin: 0.5rem 0; border-radius: 0.7rem; transition: all 0.2s;
-    }
-    .modal-list li:hover { background: rgba(15,118,110,0.08); }
-    .contact-finish {
-      text-align: center; font-size: 1.4rem; color: var(--primary);
-      margin: 2rem 0 3rem; line-height: 1.8; font-weight: 600;
-    }
-    .contact-address { text-align: center; font-size: 1.2rem; color: #475569; margin: 1.5rem 0; }
-    footer {
-      background: #f1f5f9; padding: 3rem 1.5rem; text-align: center;
-      color: #475569; font-size: 1rem; border-top: 1px solid var(--border);
-    }
-    @media (max-width: 640px) {
+    .modal-list { list-style: none; padding: 0; }
+    .modal-list li { padding: 0.9rem 1.2rem; font-size: 1.1rem; background: rgba(15,118,110,0.03); margin: 0.4rem 0; border-radius: 0.6rem; }
+    .contact-finish { text-align: center; font-size: 1.4rem; color: var(--accent); margin: 2rem 0; font-weight: 600; line-height: 1.8; }
+    .contact-address { text-align: center; font-size: 1.2rem; color: #475569; margin-bottom: 3rem; }
+    footer { background: #f1f5f9; padding: 3rem 1.5rem; text-align: center; color: #475569; font-size: 1rem; border-top: 1px solid var(--border); }
+    @media (max-width: 768px) {
       .store-name { font-size: 3.8rem; }
-      .main-slogan { font-size: 2.4rem; }
-      .modal-content { padding: 1.8rem; }
-      .modal-title { font-size: 2rem; }
+      .main-slogan { font-size: 2.2rem; }
+      .modal-content { padding: 1.5rem; }
+      .subsection-title { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -121,7 +98,7 @@
   <button class="lang-toggle" onclick="toggleLanguage()">தமிழ் ↔ English</button>
 
   <header>
-    <div class="store-name">சிதம்பரம் ஸ்டோர்</div>
+    <div class="store-name" data-i18n="storeName">சிதம்பரம் ஸ்டோர்</div>
     <div class="main-slogan">நம்ம கடை – உங்கள் நம்பிக்கை கடை!</div>
   </header>
 
@@ -142,9 +119,9 @@
   <section id="about">
     <h2 data-i18n="about.title">நம்ம பற்றி</h2>
     <div class="about-content">
-      <p data-i18n="about.p1">திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.</p>
-      <p data-i18n="about.p2">சிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.</p>
-      <p data-i18n="about.p3">நியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்.</p>
+      <p data-i18n="about.content">திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.
+சிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.
+நியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்.</p>
     </div>
   </section>
 
@@ -152,66 +129,48 @@
     <h2 data-i18n="products.title">நம்ம பிரிவுகள்</h2>
     <div class="products-grid">
       <div class="card" onclick="openModal('groceries')">
-        <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?w=800" alt="மளிகை">
         <h3 data-i18n="categories.groceries">மளிகை பிரிவு</h3>
       </div>
-      <!-- other 5 cards remain unchanged -->
+      <!-- other categories as placeholders -->
     </div>
   </section>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" onclick="event.target === this && closeModal()">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal()">×</span>
-      <h2 id="modal-title"></h2>
-      <input type="text" id="modal-search" placeholder="" />
-      <div id="modal-list"></div>
-    </div>
-  </div>
 
   <section id="contact">
     <h2 data-i18n="contact.title">தொடர்பு கொள்ளுங்கள்</h2>
     <div class="contact-finish">
       நம்ம கடை – உங்கள் நம்பிக்கை கடை!<br>
-      வடகரை, தொடர்புக்கு: <strong>9688646925</strong><br>
+      வடகரை, தொடர்புக்கு: 9688646925<br>
       வாருங்கள்... வாங்குங்கள்... மகிழுங்கள்!<br>
       ஒருமுறை வந்தால் தினமும் வருவீர்கள்! 😊
     </div>
     <div class="contact-address">
-      தைக்கா தெரு, வடகரை - 627812,<br>
-      தென்காசி மாவட்டம், தமிழ்நாடு
+      thaikka street, vadakarai - 627812 , Tenkasi Dist , Tamilnadu
     </div>
-    <!-- Google Maps iframe -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.029610455881!2d77.405!3d9.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00d4b000000001%3A0x1!2sVadakarai%2C%20Tamil%20Nadu%20627812!5e0!3m2!1sta!2sin!4v1720000000000" width="100%" height="500" style="border:0; border-radius:1.5rem; margin:2rem 0;" allowfullscreen="" loading="lazy"></iframe>
   </section>
 
   <footer>
-    <p>copyright ARM TechBridge<br>Website Crafted & developed By Alagu Ragul</p>
+    <p>copyright ARM TechBridge and Website Crafted & developed By Alagu Ragul</p>
   </footer>
 
   <script>
     const translations = {
       ta: {
         title: "சிதம்பரம் ஸ்டோர் - நம்ம கடை",
-        nav: {
-          home: "முகப்பு",
-          about: "பற்றி",
-          products: "பொருட்கள்",
-          contact: "தொடர்பு"
-        },
-        hero: {
-          title: "நம்ம கடை",
-          subtitle: "நியாயமான விலையில் உயர்தர பொருட்கள் – உங்கள் அன்றாட தேவைக்கு!"
-        },
+        nav: { home: "முகப்பு", about: "பற்றி", products: "பொருட்கள்", contact: "தொடர்பு" },
+        hero: { title: "நம்ம கடை", subtitle: "நியாயமான விலையில் உயர்தர பொருட்கள் – உங்கள் அன்றாட தேவைக்கு!" },
         about: {
           title: "நம்ம பற்றி",
-          p1: "திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.",
-          p2: "சிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.",
-          p3: "நியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்."
+          content: "திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.\nசிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.\nநியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்."
         },
         products: { title: "நம்ம பிரிவுகள்" },
         categories: {
-          groceries: "மளிகை பிரிவு"
-          // add others if needed
+          groceries: "மளிகை பிரிவு",
+          personal: "தனிப்பட்ட பராமரிப்பு பிரிவு",
+          household: "வீட்டு & சுத்தம் பிரிவு",
+          bakery: "பேக்கரி பிரிவு",
+          beverages: "பானங்கள் பிரிவு",
+          stationery: "ஸ்டேஷனரி பிரிவு"
         },
         contact: { title: "தொடர்பு கொள்ளுங்கள்" }
       },
@@ -221,13 +180,16 @@
         hero: { title: "Namma Kadai", subtitle: "Quality Products at Fair Prices – For Your Everyday Needs!" },
         about: {
           title: "About Us",
-          p1: "Chitambaram Store, run by Mr. Mariappan, has been engaged in retail and wholesale business in Vadakarai for over 25 years. It plays a major role in delivering high-quality products to people at fair prices.",
-          p2: "At Chitambaram Stores, all types of products from groceries to oils and spices are available in good quality and at low prices.",
-          p3: "Our aim is to fulfill everyday household needs easily and happily, prioritizing fair price, high-quality products, honest weight, and customer satisfaction."
+          content: "Chitambaram Store, run by Mr. Mariappan, has been engaged in retail and wholesale business in our Vadakarai for more than 25 years. It plays an important role in bringing high-quality products to people at fair prices.\nAt Chitambaram Stores, all types of products from groceries to oil varieties, spice products are available in good quality and at low prices.\nOur aim is to fulfill everyday household needs easily and happily, with fair price, high quality products, honest weight, customer satisfaction as priority."
         },
         products: { title: "Our Sections" },
         categories: {
-          groceries: "Groceries Section"
+          groceries: "Groceries Section",
+          personal: "Personal Care Section",
+          household: "Household & Cleaning Section",
+          bakery: "Bakery Section",
+          beverages: "Beverages Section",
+          stationery: "Stationery Section"
         },
         contact: { title: "Contact Us" }
       }
@@ -249,11 +211,9 @@
 
       document.title = translations[currentLang].title;
 
-      // Re-render modal if open
-      const modal = document.getElementById('modal');
-      if (modal.classList.contains('active')) {
-        const activeKey = modal.dataset.activeKey || 'groceries';
-        openModal(activeKey);
+      // Re-render open modal
+      if (document.getElementById('modal').style.display === 'flex') {
+        openModal(document.getElementById('modal').dataset.key);
       }
     }
 
@@ -264,8 +224,7 @@
         { title: "3. மாவு வகைகள்", items: ["கோதுமை மாவு","மைதா மாவு","கடலை மாவு","ரவை","அரிசி மாவு","ராகி மாவு","மக்காச்சோள மாவு"] },
         { title: "4. எண்ணெய் & நெய் வகைகள்", items: ["நிலக்கடலை எண்ணெய்","சூரியகாந்தி எண்ணெய்","கடுகு எண்ணெய்","நல்லெண்ணெய்","பாமாயில்","நெய் / பசு நெய்","வனஸ்பதி / டால்டா"] },
         { title: "5. மசாலா பொருட்கள் (முழு & தூள்)", items: [
-          "a) முழு மசாலா: சீரகம், கொத்தமல்லி விதை, வெந்தயம், கடுகு, சோம்பு, மிளகு, கிராம்பு, பட்டை, ஏலக்காய், பிரியாணி இலை, வரமிளகாய், பெருங்காயம் (கட்டி / தூள்)",
-          "b) தூள் மசாலா: மஞ்சள் தூள், மிளகாய் தூள் (காஷ்மீரி / காரமானது), கொத்தமல்லி தூள், சீரகம் தூள், கரம் மசாலா, சாட் மசாலா, சிக்கன் மசாலா, சாம்பார் பொடி, ரசம் பொடி, பிரியாணி மசாலா, கரம் மசாலா"
+          "முழு மசாலா:","சீரகம்","கொத்தமல்லி விதை","வெந்தயம்","கடுகு","சோம்பு","மிளகு","கிராம்பு","பட்டை","ஏலக்காய்","பிரியாணி இலை","வரமிளகாய்","பெருங்காயம் (கட்டி / தூள்)","தூள் மசாலா:","மஞ்சள் தூள்","மிளகாய் தூள் (காஷ்மீரி / காரமானது)","கொத்தமல்லி தூள்","சீரகம் தூள்","கரம் மசாலா","சாட் மசாலா","சிக்கன் மசாலா","சாம்பார் பொடி","ரசம் பொடி","பிரியாணி மசாலா","கரம் மசாலா"
         ]},
         { title: "6. உப்பு, சர்க்கரை & இனிப்பு", items: ["சாதா உப்பு / அயோடின் உப்பு","கல் உப்பு","வெள்ளை சர்க்கரை","பிரவுன் சர்க்கரை","வெல்லம்","பனை வெல்லம்"] },
         { title: "7. தின்பண்டங்கள் & ஸ்நாக்ஸ்", items: ["மிக்ஸ்சர்","சேவ்","நம்கீன்","மூங்க் டால்","பிஸ்கட் (பார்லே-ஜி, மேரி, மோனாகோ)","சிப்ஸ்","மாகி நூடுல்ஸ்","வறுத்த நிலக்கடலை","காக்ரா"] },
@@ -274,19 +233,18 @@
         { title: "10. இதர பேக்கேஜ்டு & வீட்டு பொருட்கள்", items: ["ஊறுகாய் (மாங்காய், எலுமிச்சை, மிக்ஸ்டு)","அப்பளம்","ஜாம் / சாஸ் / கெட்சப்","தேன்","வினிகர்","பேக்கிங் சோடா","சோப்பு / டிடர்ஜென்ட் பவுடர்","டிஷ்வாஷ்","அகர்பத்தி"] }
       ],
       en: [
-        { title: "1. Rice & Millets", items: ["Raw Rice","Boiled Rice","Idli Rice","Basmati Rice (Long / Premium)","Poha","Sago","Corn","Pearl Millet","Finger Millet","Dried Corn"] },
-        { title: "2. Pulses", items: ["Toor Dal","Moong Dal (Yellow Split)","Whole Green Gram","Urad Dal (Split)","Whole Black Urad","Chana Dal","White Chickpeas","Black Chickpeas","Masoor Dal","Dried Peas","Beans"] },
-        { title: "3. Flours", items: ["Wheat Flour","Maida","Gram Flour","Rava","Rice Flour","Ragi Flour","Corn Flour"] },
-        { title: "4. Oils & Ghee", items: ["Groundnut Oil","Sunflower Oil","Mustard Oil","Sesame Oil","Palm Oil","Ghee / Cow Ghee","Vanaspati / Dalda"] },
+        { title: "1. Rice & Grain Types", items: ["Raw Rice","Boiled Rice","Idli Rice","Basmati Rice (Long / Premium)","Poha","Sago","Corn Grain","Pearl Millet Grain","Finger Millet Grain","Dried Maize"] },
+        { title: "2. Pulses Types", items: ["Toor Dal","Moong Dal (Yellow Split)","Green Moong (Whole)","Urad Dal (Split)","Black Urad (Whole)","Chana Dal","White Chana","Black Chana","Masoor Dal","Dried Peas","Beans"] },
+        { title: "3. Flour Types", items: ["Wheat Flour","Maida Flour","Gram Flour","Rava","Rice Flour","Ragi Flour","Corn Flour"] },
+        { title: "4. Oil & Ghee Types", items: ["Groundnut Oil","Sunflower Oil","Mustard Oil","Sesame Oil","Palm Oil","Ghee / Cow Ghee","Vanaspati / Dalda"] },
         { title: "5. Spices (Whole & Powder)", items: [
-          "a) Whole Spices: Cumin, Coriander Seeds, Fenugreek, Mustard, Fennel, Pepper, Cloves, Cinnamon, Cardamom, Bay Leaf, Dry Red Chilli, Asafoetida (Lump / Powder)",
-          "b) Powder Spices: Turmeric Powder, Chilli Powder (Kashmiri / Spicy), Coriander Powder, Cumin Powder, Garam Masala, Chaat Masala, Chicken Masala, Sambar Powder, Rasam Powder, Biryani Masala, Garam Masala"
+          "Whole Spices:","Cumin","Coriander Seed","Fenugreek","Mustard","Fennel","Pepper","Cloves","Cinnamon","Cardamom","Biryani Leaf","Dry Chilli","Asafoetida (Lump / Powder)","Powder Spices:","Turmeric Powder","Chilli Powder (Kashmiri / Spicy)","Coriander Powder","Cumin Powder","Garam Masala","Chaat Masala","Chicken Masala","Sambar Powder","Rasam Powder","Biryani Masala","Garam Masala"
         ]},
         { title: "6. Salt, Sugar & Sweets", items: ["Table Salt / Iodized Salt","Rock Salt","White Sugar","Brown Sugar","Jaggery","Palm Jaggery"] },
-        { title: "7. Snacks & Namkeen", items: ["Mixture","Sev","Namkeen","Moong Dal","Biscuits (Parle-G, Marie, Monaco)","Chips","Maggi Noodles","Roasted Groundnuts","Kakra"] },
+        { title: "7. Snacks & Savories", items: ["Mixture","Sev","Namkeen","Moong Dal","Biscuits (Parle-G, Marie, Monaco)","Chips","Maggi Noodles","Roasted Groundnut","Kakra"] },
         { title: "8. Beverages & Milk Products", items: ["Tea Powder","Coffee Powder (Bru, Nescafe)","Horlicks / Boost / Complan","Milk Powder"] },
-        { title: "9. Dry Fruits & Nuts", items: ["Cashew","Almond","Raisins","Dates"] },
-        { title: "10. Packaged & Household Items", items: ["Pickles (Mango, Lemon, Mixed)","Papad","Jam / Sauce / Ketchup","Honey","Vinegar","Baking Soda","Soap / Detergent Powder","Dishwash","Agarbatti"] }
+        { title: "9. Dry Fruits & Seeds", items: ["Cashew","Almond","Raisins","Dates"] },
+        { title: "10. Other Packaged & Household Items", items: ["Pickles (Mango, Lemon, Mixed)","Appalam","Jam / Sauce / Ketchup","Honey","Vinegar","Baking Soda","Soap / Detergent Powder","Dishwash","Agarbatti"] }
       ]
     };
 
