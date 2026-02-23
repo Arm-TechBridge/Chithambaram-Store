@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>சிதம்பரம் ஸ்டோர் - நம்ம கடை | Chitambaram Store - Namma Kadai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --card-bg: rgba(255,255,255,0.92);
+      --text: #1f2937;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --gold: #d97706;
+      --border: rgba(37,99,235,0.18);
+      --shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Manrope', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .tamil-font { font-family: 'Noto Sans Tamil', sans-serif; }
+
+    header {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+      color: white;
+      padding: 100px 20px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 60px rgba(37,99,235,0.25);
+    }
+
+    .logo {
+      font-size: 5.2rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      text-shadow: 0 0 40px rgba(255,255,255,0.4);
+    }
+
+    .slogan {
+      font-size: 3.8rem;
+      font-weight: 800;
+      margin: 20px 0;
+      text-shadow: 0 0 25px rgba(255,255,255,0.35);
+    }
+
+    .lang-btn {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: white;
+      color: var(--primary);
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      transition: all 0.4s;
+      z-index: 9999;
+    }
+
+    .lang-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.08);
+      box-shadow: 0 15px 40px rgba(37,99,235,0.3);
+    }
+
+    nav {
+      background: white;
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text);
+      font-weight: 600;
+      padding: 14px 38px;
+      margin: 10px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.4s;
+    }
+
+    nav a:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.25);
+    }
+
+    .hero {
+      height: 80vh;
+      background: url('https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80') center/cover fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.65));
+    }
+
+    .hero h1 {
+      font-size: 8.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-shadow: 0 0 50px rgba(37,99,235,0.3);
+    }
+
+    section {
+      padding: 140px 20px;
+      max-width: 1700px;
+      margin: 0 auto;
+    }
+
+    #products {
+      background: white;
+      border-radius: 48px;
+      margin: 0 30px 120px;
+      padding: 100px 50px;
+      box-shadow: var(--shadow);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.12);
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-36px) scale(1.04);
+      box-shadow: 0 70px 140px rgba(0,0,0,0.18);
+    }
+
+    .card img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      transition: transform 1.2s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.18);
+    }
+
+    .card h3 {
+      background: linear-gradient(90deg, var(--primary), #3b82f6);
+      background-size: 200% 200%;
+      animation: gradientFlow 12s ease infinite;
+      color: white;
+      padding: 40px 28px;
+      text-align: center;
+      font-size: 2.1rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    footer {
+      background: linear-gradient(to right, var(--primary), #3b82f6);
+      color: white;
+      text-align: center;
+      padding: 90px 20px;
+      margin-top: 180px;
+    }
+
+    /* ────────────────────────────────────────────────
+       SLIDING MODAL
+    ──────────────────────────────────────────────── */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 2000;
+      display: none;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 960px;
+      height: 100%;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: -40px 0 100px rgba(0,0,0,0.4);
+      padding: 70px 60px;
+    }
+
+    .modal.active .modal-content {
+      transform: translateX(0);
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 50px;
+      right: 60px;
+      width: 90px;
+      height: 90px;
+      background: var(--primary);
+      color: white;
+      font-size: 4.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 12px 40px rgba(37,99,235,0.4);
+      transition: all 0.5s;
+      z-index: 2100;
+    }
+
+    .close-btn:hover {
+      transform: rotate(360deg) scale(1.15);
+      background: var(--gold);
+      box-shadow: 0 18px 50px rgba(212,175,55,0.5);
+    }
+
+    .modal h2 {
+      font-size: 3.8rem;
+      color: var(--primary);
+      margin-bottom: 50px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .modal-search-container {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      position: relative;
+    }
+
+    .modal-search {
+      width: 100%;
+      padding: 20px 24px 20px 70px;
+      font-size: 1.3rem;
+      border: 2px solid rgba(37,99,235,0.25);
+      border-radius: 70px;
+      transition: all 0.3s;
+    }
+
+    .modal-search:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 35px rgba(37,99,235,0.25);
+      outline: none;
+    }
+
+    .modal-search-icon {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .modal ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal ul li {
+      background: rgba(243,244,246,0.9);
+      margin: 18px 0;
+      padding: 22px 32px;
+      border-radius: 20px;
+      border-left: 8px solid var(--primary);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      font-size: 1.35rem;
+      transition: all 0.4s;
+    }
+
+    .modal ul li:hover {
+      transform: translateX(24px);
+      background: white;
+      border-left-color: var(--gold);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 768px) {
+      .logo       { font-size: 4rem; }
+      .slogan     { font-size: 3rem; }
+      .hero h1    { font-size: 6rem; }
+      .modal-content { padding: 60px 30px; width: 100%; }
+      .close-btn  { width: 80px; height: 80px; font-size: 4rem; right: 30px; top: 30px; }
+      nav a       { padding: 12px 24px; margin: 6px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body class="lang-tamil">
+
+  <button class="lang-btn" aria-label="மொழி மாற்று / Change Language" onclick="toggleLanguage()">
+    தமிழ் ↔ English
+  </button>
+
+  <header>
+    <div class="logo lang-ta">சிதம்பரம் ஸ்டோர்</div>
+    <div class="logo lang-en" style="display:none">Chitambaram Store</div>
+
+    <div class="slogan lang-ta">நம்ம கடை</div>
+    <div class="slogan lang-en" style="display:none">Namma Kadai</div>
+
+    <p class="lang-ta">சில்லறை & மொத்த விற்பனை - உங்கள் கிராமத்தின் நம்பகமான டிபார்ட்மெண்டல் ஸ்டோர்</p>
+    <p class="lang-en" style="display:none">Retail & Wholesale - Your Trusted Village Departmental Store</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home" class="lang-ta">முகப்பு</a><a href="#home" class="lang-en" style="display:none">Home</a></li>
+      <li><a href="#about" class="lang-ta">பற்றி</a><a href="#about" class="lang-en" style="display:none">About</a></li>
+      <li><a href="#products" class="lang-ta">பொருட்கள்</a><a href="#products" class="lang-en" style="display:none">Products</a></li>
+      <li><a href="#contact" class="lang-ta">தொடர்பு</a><a href="#contact" class="lang-en" style="display:none">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home" class="hero">
+    <div>
+      <h1 class="lang-ta">நம்ம கடை</h1>
+      <h1 class="lang-en" style="display:none">Namma Kadai</h1>
+
+      <p class="lang-ta" style="font-size:3.8rem; margin-top:45px;">
+        சில்லறை மற்றும் மொத்த விற்பனை - எப்போதும் தரமான பொருட்கள்!
+      </p>
+      <p class="lang-en" style="font-size:3.8rem; margin-top:45px; display:none;">
+        Retail & Wholesale - Always Quality Products!
+      </p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="lang-ta">நம்ம பற்றி</h2>
+    <h2 class="lang-en" style="display:none">About Us</h2>
+
+    <p class="lang-ta">
+      மரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், தைக்கா தெரு, வடகரை - 627812, தமிழ்நாடு.  
+      எங்கள் கடை சில்லறை மற்றும் மொத்த விற்பனை இரண்டிலும் சிறப்பாக சேவை செய்கிறது.  
+      கிராம மக்களின் அன்றாட தேவைகளுக்கு தரமான பொருட்களை நியாயமான விலையில் வழங்கி வருகிறோம்.
+    </p>
+    <p class="lang-en" style="display:none">
+      Chitambaram Store, owned and run by Mariappan, is located at Thaikka Street, Vadakarai - 627812, Tamil Nadu.  
+      We proudly serve both retail and wholesale customers, providing quality products at fair prices to meet the daily needs of our village community.
+    </p>
+  </section>
+
+  <section id="products">
+    <h2 class="lang-ta">நம்ம பிரிவுகள்</h2>
+    <h2 class="lang-en" style="display:none">Our Sections</h2>
+
+    <div class="products-grid">
+      <div class="card" onclick="openModal('groceries')">
+        <img src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80" alt="மளிகை பொருட்கள் / Groceries">
+        <h3 class="lang-ta">மளிகை பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Groceries Section</h3>
+      </div>
+
+      <div class="card" onclick="openModal('personal')">
+        <img src="https://images.unsplash.com/photo-1625772299848-361b803ffa25?auto=format&fit=crop&q=80" alt="தனிப்பட்ட பராமரிப்பு / Personal Care">
+        <h3 class="lang-ta">தனிப்பட்ட பராமரிப்பு பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Personal Care Section</h3>
+      </div>
+
+      <div class="card" onclick="openModal('household')">
+        <img src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&q=80" alt="வீட்டு & சுத்தம் / Household & Cleaning">
+        <h3 class="lang-ta">வீட்டு & சுத்தம் பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Household & Cleaning Section</h3>
+      </div>
+
+      <div class="card" onclick="openModal('bakery')">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80" alt="பேக்கரி / Bakery">
+        <h3 class="lang-ta">பேக்கரி பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Bakery Section</h3>
+      </div>
+
+      <div class="card" onclick="openModal('beverages')">
+        <img src="https://images.unsplash.com/photo-1622484212850-eb596d4edc88?auto=format&fit=crop&q=80" alt="பானங்கள் / Beverages">
+        <h3 class="lang-ta">பானங்கள் பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Beverages Section</h3>
+      </div>
+
+      <div class="card" onclick="openModal('stationery')">
+        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80" alt="ஸ்டேஷனரி / Stationery">
+        <h3 class="lang-ta">ஸ்டேஷனரி பிரிவு</h3>
+        <h3 class="lang-en" style="display:none">Stationery Section</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────
+       MODAL (slides from right)
+  ──────────────────────────────────────────────── -->
+  <div id="modal" class="modal" onclick="event.target === this && closeModal()">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <h2 id="modal-title"></h2>
+      <div class="modal-search-container">
+        <span class="modal-search-icon">🔍</span>
+        <input type="text" id="modal-search" placeholder="">
+      </div>
+      <ul id="modal-list"></ul>
+    </div>
+  </div>
+
+  <section id="contact">
+    <h2 class="lang-ta">தொடர்பு கொள்ளுங்கள்</h2>
+    <h2 class="lang-en" style="display:none">Contact Us</h2>
+
+    <p class="lang-ta" style="font-size:1.8rem; text-align:center; margin:40px 0;">
+      தொலைபேசி: <strong>9688646925</strong>
+    </p>
+    <p class="lang-en" style="font-size:1.8rem; text-align:center; margin:40px 0; display:none;">
+      Phone: <strong>9688646925</strong>
+    </p>
+
+    <p class="lang-ta" style="text-align:center; font-size:1.6rem;">
+      முகவரி: தைக்கா தெரு, வடகரை - 627812, தமிழ்நாடு, இந்தியா
+    </p>
+    <p class="lang-en" style="text-align:center; font-size:1.6rem; display:none;">
+      Address: Thaikka Street, Vadakarai - 627812, Tamil Nadu, India
+    </p>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.029610455881!2d77.405!3d9.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00d4b000000001%3A0x1!2sVadakarai%2C%20Tamil%20Nadu%20627812!5e0!3m2!1sta!2sin!4v1720000000000" 
+            width="100%" height="600" style="border:0; border-radius:40px; margin:70px 0;" 
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <footer>
+    <p class="lang-ta">© 2026 சிதம்பரம் ஸ்டோர் - நம்ம கடை | எல்லா உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+    <p class="lang-en" style="display:none">© 2026 Chitambaram Store - Namma Kadai | All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ────────────────────────
+    // Language Toggle
+    // ────────────────────────
+    function toggleLanguage() {
+      const body = document.body;
+      const isEnglish = !body.classList.contains('lang-english');
+      
+      body.classList.toggle('lang-english', isEnglish);
+      
+      document.querySelectorAll('[class*="lang-"]').forEach(el => {
+        const shouldShow = (isEnglish && el.classList.contains('lang-en')) ||
+                           (!isEnglish && el.classList.contains('lang-ta'));
+        el.style.display = shouldShow ? '' : 'none';
+      });
+    }
+
+    // ────────────────────────
+    // Modal Logic
+    // ────────────────────────
+    function openModal(key) {
+      const isEnglish = document.body.classList.contains('lang-english');
+      const lang = isEnglish ? 'en' : 'ta';
+      const data = sections[key][lang];
+
+      document.getElementById('modal-title').textContent = data.title;
+      
+      const placeholder = lang === 'ta' 
+        ? 'பொருட்களை தேடுங்கள்...' 
+        : 'Search items...';
+      document.getElementById('modal-search').placeholder = placeholder;
+      document.getElementById('modal-search').value = ''; // reset search
+
+      const ul = document.getElementById('modal-list');
+      ul.innerHTML = '';
+
+      data.items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+
+      const modal = document.getElementById('modal');
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('active'), 30);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('active');
+      setTimeout(() => modal.style.display = 'none', 800);
+    }
+
+    // Live search (attached once)
+    document.getElementById('modal-search').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      const items = document.querySelectorAll('#modal-list li');
+      items.forEach(li => {
+        li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    });
+
+    // ────────────────────────
+    // Product Data
+    // ────────────────────────
+    const sections = {
+      groceries: {
+        ta: {
+          title: "மளிகை பிரிவு",
+          items: [
+            "துவரம் பருப்பு", "உளுத்தம் பருப்பு", "பாசி பருப்பு / பாசி பயறு", "கடலை பருப்பு", "பொட்டு கடலை",
+            "கொள்ளு", "வெள்ளை / கருப்பு கொண்டைக்கடலை", "காராமணி", "கம்பு", "ராகி / கேழ்வரகு", "தினை",
+            "குதிரைவாலி", "சாமை", "வரகு", "சோளம்", "கோதுமை மாவு", "மைதா", "அரிசி மாவு", "கடலை மாவு",
+            "ரவை", "சேமியா", "ஜவ்வரிசி", "உப்பு", "சக்கரை", "வெல்லம்", "புளி", "சன் ப்ளவர் ஆயில்",
+            "நல்லெண்ணெய்", "தேங்காய் எண்ணெய்", "அரிசி (பாஸ்மதி, ரா, பொயில்ட்)", "தூர் தால்", "மூங் தால்",
+            "உரட் தால்", "சனா தால்", "மசூர் தால்", "ராஜ்மா", "கபூலி சனா", "மஞ்சள் பொடி", "மிளகாய் பொடி",
+            "கொத்தமல்லி பொடி", "கரம் மசாலா", "சீரகம்", "கடுகு", "மிளகு", "பெருங்காயம்", "சாம்பார் பொடி",
+            "பிரியாணி மசாலா", "பிஸ்கட்", "சிப்ஸ்", "நம்கீன்", "மிக்சர்", "இன்ஸ்டன்ட் நூடல்ஸ்", "பாஸ்தா",
+            "ஓட்ஸ்", "கார்ன்ப்ளேக்ஸ்", "பிகில்ஸ்", "பாப்பட்"
+          ]
+        },
+        en: {
+          title: "Groceries Section",
+          items: [
+            "Thuvaram Paruppu (Toor Dal)", "Ulutham Paruppu (Urad Dal)", "Paasi Paruppu (Moong Dal)",
+            "Kadalai Paruppu (Chana Dal)", "Pottu Kadalai", "Kollu (Horse Gram)", "Kondaikadalai (Chickpeas)",
+            "Karamani (Black-eyed Peas)", "Kambu (Pearl Millet)", "Ragi / Kezhvaragu (Finger Millet)",
+            "Thinai (Foxtail Millet)", "Kuthiraivali (Barnyard Millet)", "Samai (Little Millet)",
+            "Varagu (Kodo Millet)", "Cholam (Sorghum)", "Godhumai Maavu (Whole Wheat Flour)", "Maida",
+            "Arisi Maavu (Rice Flour)", "Kadalai Maavu (Gram Flour)", "Ravai (Semolina)", "Semiya (Vermicelli)",
+            "Javvarisi (Sago)", "Salt", "Sugar", "Jaggery", "Tamarind", "Sunflower Oil", "Gingelly Oil",
+            "Coconut Oil", "Rice (Basmati, Raw, Boiled)", "Toor dal", "Moong dal", "Urad dal", "Chana dal",
+            "Masoor dal", "Rajma", "Kabuli chana", "Turmeric powder", "Chilli powder", "Coriander powder",
+            "Garam masala", "Cumin seeds", "Mustard seeds", "Pepper", "Asafoetida", "Sambar powder",
+            "Biryani masala", "Biscuits", "Chips", "Namkeen", "Mixture", "Instant noodles", "Pasta",
+            "Oats", "Cornflakes", "Pickles", "Papad"
+          ]
+        }
+      },
+      // ... (other sections remain unchanged - personal, household, bakery, beverages, stationery)
+      personal: {
+        ta: { title: "தனிப்பட்ட பராமரிப்பு பிரிவு", items: ["குளியல் சோப்பு", "ஷாம்பு", "ஹேர் ஆயில்", "ஹேர் கலர்", "டூத்பேஸ்ட்", "டூத்பிரஷ்", "ஷேவிங் கிரீம்", "ரேசர்", "சானிடரி நாப்கின்ஸ்"] },
+        en: { title: "Personal Care Section", items: ["Bath soap", "Shampoo", "Hair oil", "Hair color", "Toothpaste", "Toothbrush", "Shaving cream", "Razor", "Sanitary napkins"] }
+      },
+      household: {
+        ta: { title: "வீட்டு & சுத்தம் பிரிவு", items: ["டிடர்ஜென்ட் பவுடர்", "லிக்விட் டிடர்ஜென்ட்", "பேப்ரிக் சாப்ட்னர்", "ப்ளீசிங் பவுடர்", "டிஷ்வாஷ் பார்", "டிஷ்வாஷ் லிக்விட்", "ஸ்க்ரப் பேட்", "ஸ்டீல் ஸ்க்ரப்பர்", "டாய்லெட் க்ளீனர்", "ப்ளோர் க்ளீனர்", "பெனைல்"] },
+        en: { title: "Household & Cleaning Section", items: ["Detergent powder", "Liquid detergent", "Fabric softener", "Bleaching powder", "Dishwash bar", "Dishwash liquid", "Scrub pad", "Steel scrubber", "Toilet cleaner", "Floor cleaner", "Phenyl"] }
+      },
+      bakery: {
+        ta: { title: "பேக்கரி பிரிவு", items: ["பிரெட் (வைட், பிரவுன், மல்டிகிரெயின்)", "பன்", "ரஸ்க்", "குக்கீஸ்", "கிரீம் பிஸ்கட்", "கேக்ஸ்"] },
+        en: { title: "Bakery Section", items: ["Bread (White, Brown, Multigrain)", "Bun", "Rusk", "Cookies", "Cream biscuits", "Cakes"] }
+      },
+      beverages: {
+        ta: { title: "பானங்கள் பிரிவு", items: ["டீ பவுடர்", "காபி பவுடர்", "கிரீன் டீ", "பூஸ்ட்", "ஹார்லிக்ஸ்", "சாப்ட் டிரிங்க்ஸ்"] },
+        en: { title: "Beverages Section", items: ["Tea powder", "Coffee powder", "Green tea", "Boost", "Horlicks", "Soft drinks"] }
+      },
+      stationery: {
+        ta: { title: "ஸ்டேஷனரி பிரிவு", items: ["பென்ஸ்", "பென்சில்ஸ்", "இரேசர்ஸ்", "ஷார்ப்பெனர்ஸ்", "நோட்புக்ஸ்", "A4 ஷீட்ஸ்", "பைல்ஸ்", "ஸ்டேப்லர்", "க்ளூ", "பேட்டரீஸ்"] },
+        en: { title: "Stationery Section", items: ["Pens", "Pencils", "Erasers", "Sharpeners", "Notebooks", "A4 sheets", "Files", "Stapler", "Glue", "Batteries"] }
+      }
+    };
+  </script>
+</body>
+</html>
