@@ -27,11 +27,12 @@
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family: 'Manrope', system-ui, sans-serif;
-      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      font-family: 'Manrope', sans-serif;
+      background: linear-gradient(to bottom right, var(--bg-start) 0%, var(--bg-end) 80%);
       color: var(--text);
       line-height: 1.7;
       min-height: 100vh;
+      background-size: cover;
     }
 
     body.tamil { font-family: 'Noto Sans Tamil', 'Manrope', sans-serif; }
@@ -155,10 +156,13 @@
     }
 
     .subsection-btn:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       box-shadow: 0 16px 40px rgba(15,118,110,0.18);
       background: rgba(15,118,110,0.03);
     }
+
+    .subsection-btn:nth-child(odd) { border-left: 4px solid var(--primary); }
+    .subsection-btn:nth-child(even) { border-left: 4px solid var(--accent); }
 
     .modal {
       position: fixed;
@@ -178,8 +182,8 @@
     .modal-content {
       background: white;
       width: 90%;
-      max-width: 960px;
-      max-height: 92vh;
+      max-width: 900px;
+      max-height: 90vh;
       border-radius: var(--radius);
       overflow-y: auto;
       padding: 2.2rem;
@@ -208,8 +212,8 @@
 
     .modal-search {
       width: 100%;
-      padding: 1rem;
-      font-size: 1.15rem;
+      padding: 1.2rem;
+      font-size: 1.2rem;
       border: 1px solid #cbd5e1;
       border-radius: 0.8rem;
       margin-bottom: 2rem;
@@ -234,6 +238,22 @@
       background: rgba(15,118,110,0.08);
     }
 
+    .contact-finish {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin: 2rem 0;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    .contact-address {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 3rem;
+    }
+
     footer {
       background: #f1f5f9;
       padding: 4rem 1.5rem 2rem;
@@ -248,6 +268,7 @@
       .main-slogan { font-size: 2.6rem; }
       .modal-content { padding: 1.8rem; max-height: 95vh; }
       .modal-title { font-size: 1.9rem; }
+      .modal-search { padding: 1rem; font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -275,7 +296,7 @@
   </section>
 
   <section id="about">
-    <h2 data-i18n="about.title">நம்ம பற்றி</h2>
+    <h2 data-i18n="about.title">சிதம்பரம் ஸ்டோர்</h2>
     <div class="about-content">
       <p data-i18n="about.p1">திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.</p>
       <p data-i18n="about.p2">சிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.</p>
@@ -285,33 +306,28 @@
 
   <section id="products">
     <h2 data-i18n="products.title">நம்ம பிரிவுகள்</h2>
-
-    <h3 style="text-align:center; color:var(--primary); margin:3rem 0 1.5rem; font-size:2rem;">
-      மளிகை பிரிவு உள்ளடக்கங்கள்
-    </h3>
-
     <div class="subsections-grid">
-      <div class="subsection-btn" onclick="openSubsectionModal(0)">1. அரிசி & தானிய வகைகள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(1)">2. பருப்பு வகைகள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(2)">3. மாவு வகைகள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(3)">4. எண்ணெய் & நெய் வகைகள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(4)">5. மசாலா பொருட்கள் (முழு & தூள்)</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(5)">6. உப்பு, சர்க்கரை & இனிப்பு</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(6)">7. தின்பண்டங்கள் & ஸ்நாக்ஸ்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(7)">8. பானங்கள் & பால் பொருட்கள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(8)">9. உலர்ந்த பழங்கள் & விதைகள்</div>
-      <div class="subsection-btn" onclick="openSubsectionModal(9)">10. இதர பேக்கேஜ்டு & வீட்டு பொருட்கள்</div>
+      <div class="subsection-btn subsection-1" onclick="openSubsectionModal(0)">1. அரிசி & தானிய வகைகள்</div>
+      <div class="subsection-btn subsection-2" onclick="openSubsectionModal(1)">2. பருப்பு வகைகள்</div>
+      <div class="subsection-btn subsection-3" onclick="openSubsectionModal(2)">3. மாவு வகைகள்</div>
+      <div class="subsection-btn subsection-4" onclick="openSubsectionModal(3)">4. எண்ணெய் & நெய் வகைகள்</div>
+      <div class="subsection-btn subsection-5" onclick="openSubsectionModal(4)">5. மசாலா பொருட்கள் (முழு & தூள்)</div>
+      <div class="subsection-btn subsection-6" onclick="openSubsectionModal(5)">6. உப்பு, சர்க்கரை & இனிப்பு</div>
+      <div class="subsection-btn subsection-7" onclick="openSubsectionModal(6)">7. தின்பண்டங்கள் & ஸ்நாக்ஸ்</div>
+      <div class="subsection-btn subsection-8" onclick="openSubsectionModal(7)">8. பானங்கள் & பால் பொருட்கள்</div>
+      <div class="subsection-btn subsection-9" onclick="openSubsectionModal(8)">9. உலர்ந்த பழங்கள் & விதைகள்</div>
+      <div class="subsection-btn subsection-10" onclick="openSubsectionModal(9)">10. இதர பேக்கேஜ்டு & வீட்டு பொருட்கள்</div>
     </div>
   </section>
 
-  <!-- Single modal reused for all subsections -->
+  <!-- Modal -->
   <div id="modal" class="modal" onclick="event.target === this && closeModal()">
     <div class="modal-content">
       <div class="modal-header">
         <h2 id="modal-title"></h2>
         <span class="close-btn" onclick="closeModal()">×</span>
       </div>
-      <input type="text" id="modal-search" placeholder="பொருட்களை தேடுங்கள்..." />
+      <input type="text" id="modal-search" placeholder="" />
       <div id="modal-list"></div>
     </div>
   </div>
@@ -342,14 +358,38 @@
         nav: { home: "முகப்பு", about: "பற்றி", products: "பொருட்கள்", contact: "தொடர்பு" },
         hero: { title: "நம்ம கடை", subtitle: "நியாயமான விலையில் உயர்தர பொருட்கள் – உங்கள் அன்றாட தேவைக்கு!" },
         about: {
-          title: "நம்ம பற்றி",
-          content: "திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.\nசிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.\nநியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்."
+          title: "சிதம்பரம் ஸ்டோர்",
+          p1: "திரு. மாரியப்பன் அவர்களால் நடத்தப்படும் சிதம்பரம் ஸ்டோர், நமது வடகரையில் 25+ வருடங்களுக்கு மேலாக சில்லறை மற்றும் மொத்த வியாபாரத்தில் ஈடுபட்டு வருகிறது. நியாயமான விலையிலும் உயர்தரமான பொருட்களை மக்களுக்கு கொண்டு சேர்ப்பதில் முக்கிய பங்காற்றி வருகிறது.",
+          p2: "சிதம்பரம் ஸ்டோர்ஸில் மளிகை பொருட்கள் முதல் எண்ணெய் வகைகள், மசாலா பொருட்கள் என அனைத்து வகை பொருட்களும் தரமாகவும் விலை குறைவாகவும் கிடைக்கும்.",
+          p3: "நியாயமான விலை, உயர்தரமான பொருட்கள், நேர்மையான எடை, வாடிக்கையாளர் திருப்தி ஆகியவற்றை முதன்மையாகக் கொண்டு, அன்றாட வீட்டுத் தேவைகளை எளிதாகவும் மகிழ்ச்சியாகவும் பூர்த்தி செய்வதே எங்கள் நோக்கம்."
         },
         products: { title: "நம்ம பிரிவுகள்" },
-        categories: {
-          groceries: "மளிகை பிரிவு"
-        },
-        contact: { title: "தொடர்பு கொள்ளுங்கள்" }
+        categories: { groceries: "மளிகை பிரிவு" },
+        contact: { title: "தொடர்பு கொள்ளுங்கள்" },
+        subsectionTitles: [
+          "1. அரிசி & தானிய வகைகள்",
+          "2. பருப்பு வகைகள்",
+          "3. மாவு வகைகள்",
+          "4. எண்ணெய் & நெய் வகைகள்",
+          "5. மசாலா பொருட்கள் (முழு & தூள்)",
+          "6. உப்பு, சர்க்கரை & இனிப்பு",
+          "7. தின்பண்டங்கள் & ஸ்நாக்ஸ்",
+          "8. பானங்கள் & பால் பொருட்கள்",
+          "9. உலர்ந்த பழங்கள் & விதைகள்",
+          "10. இதர பேக்கேஜ்டு & வீட்டு பொருட்கள்"
+        ],
+        subsectionItems: [
+          ["பச்சரிசி","புழுங்கல் அரிசி","இட்லி அரிசி","பாஸ்மதி அரிசி (நீளமானது / பிரீமியம்)","அவல்","ஜவ்வரிசி","சோளம் தானியம்","கம்பு தானியம்","ராகி தானியம்","மக்காச்சோளம் (உலர்ந்தது)"],
+          ["துவரம் பருப்பு","பயறு பருப்பு (மஞ்சள் பிளவு)","பச்சை பயறு (முழு)","உளுந்தம் பருப்பு (பிளவு)","கருப்பு உளுந்து (முழு)","கடலை பருப்பு","கொண்டைக்கடலை (வெள்ளை)","கருப்பு கொண்டைக்கடலை","மசூர் பருப்பு","பட்டாணி (உலர்ந்தது)","பீன்ஸ்"],
+          ["கோதுமை மாவு","மைதா மாவு","கடலை மாவு","ரவை","அரிசி மாவு","ராகி மாவு","மக்காச்சோள மாவு"],
+          ["நிலக்கடலை எண்ணெய்","சூரியகாந்தி எண்ணெய்","கடுகு எண்ணெய்","நல்லெண்ணெய்","பாமாயில்","நெய் / பசு நெய்","வனஸ்பதி / டால்டா"],
+          ["முழு மசாலா:","சீரகம்","கொத்தமல்லி விதை","வெந்தயம்","கடுகு","சோம்பு","மிளகு","கிராம்பு","பட்டை","ஏலக்காய்","பிரியாணி இலை","வரமிளகாய்","பெருங்காயம் (கட்டி / தூள்)","தூள் மசாலா:","மஞ்சள் தூள்","மிளகாய் தூள் (காஷ்மீரி / காரமானது)","கொத்தமல்லி தூள்","சீரகம் தூள்","கரம் மசாலா","சாட் மசாலா","சிக்கன் மசாலா","சாம்பார் பொடி","ரசம் பொடி","பிரியாணி மசாலா","கரம் மசாலா"],
+          ["சாதா உப்பு / அயோடின் உப்பு","கல் உப்பு","வெள்ளை சர்க்கரை","பிரவுன் சர்க்கரை","வெல்லம்","பனை வெல்லம்"],
+          ["மிக்ஸ்சர்","சேவ்","நம்கீன்","மூங்க் டால்","பிஸ்கட் (பார்லே-ஜி, மேரி, மோனாகோ)","சிப்ஸ்","மாகி நூடுல்ஸ்","வறுத்த நிலக்கடலை","காக்ரா"],
+          ["டீ தூள்","காபி தூள் (ப்ரூ, நெஸ்கேஃப்)","ஹார்லிக்ஸ் / போஸ்ட் / காம்ப்ளான்","பால் பவுடர்"],
+          ["முந்திரி","பாதாம்","திராட்சை","பேரீச்சம்பழம்"],
+          ["ஊறுகாய் (மாங்காய், எலுமிச்சை, மிக்ஸ்டு)","அப்பளம்","ஜாம் / சாஸ் / கெட்சப்","தேன்","வினிகர்","பேக்கிங் சோடா","சோப்பு / டிடர்ஜென்ட் பவுடர்","டிஷ்வாஷ்","அகர்பத்தி"]
+        ]
       },
       en: {
         title: "Chitambaram Store - Namma Kadai",
@@ -358,47 +398,38 @@
         hero: { title: "Namma Kadai", subtitle: "Quality Products at Fair Prices – For Your Everyday Needs!" },
         about: {
           title: "About Us",
-          content: "Chitambaram Store, run by Mr. Mariappan, has been engaged in retail and wholesale business in our Vadakarai for more than 25 years. It plays an important role in bringing high-quality products to people at fair prices.\nAt Chitambaram Stores, all types of products from groceries to oil varieties, spice products are available in good quality and at low prices.\nOur aim is to fulfill everyday household needs easily and happily, with fair price, high quality products, honest weight, customer satisfaction as priority."
+          p1: "Chitambaram Store, run by Mr. Mariappan, has been engaged in retail and wholesale business in our Vadakarai for more than 25 years. It plays a major role in delivering high-quality products to people at fair prices.",
+          p2: "At Chitambaram Stores, all types of products from groceries to oils and spices are available in good quality and at low prices.",
+          p3: "Our aim is to fulfill everyday household needs easily and happily, with fair price, high quality products, honest weight, customer satisfaction as priority."
         },
         products: { title: "Our Sections" },
-        categories: {
-          groceries: "Groceries Section"
-        },
-        contact: { title: "Contact Us" }
+        categories: { groceries: "Groceries Section" },
+        contact: { title: "Contact Us" },
+        subsectionTitles: [
+          "1. Rice & Grain Types",
+          "2. Pulses Types",
+          "3. Flour Types",
+          "4. Oil & Ghee Types",
+          "5. Spices (Whole & Powder)",
+          "6. Salt, Sugar & Sweets",
+          "7. Snacks & Savories",
+          "8. Beverages & Milk Products",
+          "9. Dry Fruits & Seeds",
+          "10. Other Packaged & Household Items"
+        ],
+        subsectionItems: [
+          ["Raw Rice","Boiled Rice","Idli Rice","Basmati Rice (Long / Premium)","Poha","Sago","Corn Grain","Pearl Millet Grain","Finger Millet Grain","Dried Maize"],
+          ["Toor Dal","Moong Dal (Yellow Split)","Green Moong (Whole)","Urad Dal (Split)","Black Urad (Whole)","Chana Dal","White Chana","Black Chana","Masoor Dal","Dried Peas","Beans"],
+          ["Wheat Flour","Maida","Gram Flour","Rava","Rice Flour","Ragi Flour","Corn Flour"],
+          ["Groundnut Oil","Sunflower Oil","Mustard Oil","Sesame Oil","Palm Oil","Ghee / Cow Ghee","Vanaspati / Dalda"],
+          ["Whole Spices:","Cumin","Coriander Seeds","Fenugreek","Mustard","Fennel","Pepper","Cloves","Cinnamon","Cardamom","Biryani Leaf","Dry Red Chilli","Asafoetida (Lump / Powder)","Powder Spices:","Turmeric Powder","Chilli Powder (Kashmiri / Spicy)","Coriander Powder","Cumin Powder","Garam Masala","Chaat Masala","Chicken Masala","Sambar Powder","Rasam Powder","Biryani Masala","Garam Masala"],
+          ["Table Salt / Iodized Salt","Rock Salt","White Sugar","Brown Sugar","Jaggery","Palm Jaggery"],
+          ["Mixture","Sev","Namkeen","Moong Dal","Biscuits (Parle-G, Marie, Monaco)","Chips","Maggi Noodles","Roasted Groundnut","Kakra"],
+          ["Tea Powder","Coffee Powder (Bru, Nescafe)","Horlicks / Boost / Complan","Milk Powder"],
+          ["Cashew","Almond","Raisins","Dates"],
+          ["Pickles (Mango, Lemon, Mixed)","Papad","Jam / Sauce / Ketchup","Honey","Vinegar","Baking Soda","Soap / Detergent Powder","Dishwash","Agarbatti"]
+        ]
       }
-    };
-
-    const subsections = {
-      ta: [
-        { title: "1. அரிசி & தானிய வகைகள்", items: ["பச்சரிசி","புழுங்கல் அரிசி","இட்லி அரிசி","பாஸ்மதி அரிசி (நீளமானது / பிரீமியம்)","அவல்","ஜவ்வரிசி","சோளம் தானியம்","கம்பு தானியம்","ராகி தானியம்","மக்காச்சோளம் (உலர்ந்தது)"] },
-        { title: "2. பருப்பு வகைகள்", items: ["துவரம் பருப்பு","பயறு பருப்பு (மஞ்சள் பிளவு)","பச்சை பயறு (முழு)","உளுந்தம் பருப்பு (பிளவு)","கருப்பு உளுந்து (முழு)","கடலை பருப்பு","கொண்டைக்கடலை (வெள்ளை)","கருப்பு கொண்டைக்கடலை","மசூர் பருப்பு","பட்டாணி (உலர்ந்தது)","பீன்ஸ்"] },
-        { title: "3. மாவு வகைகள்", items: ["கோதுமை மாவு","மைதா மாவு","கடலை மாவு","ரவை","அரிசி மாவு","ராகி மாவு","மக்காச்சோள மாவு"] },
-        { title: "4. எண்ணெய் & நெய் வகைகள்", items: ["நிலக்கடலை எண்ணெய்","சூரியகாந்தி எண்ணெய்","கடுகு எண்ணெய்","நல்லெண்ணெய்","பாமாயில்","நெய் / பசு நெய்","வனஸ்பதி / டால்டா"] },
-        { title: "5. மசாலா பொருட்கள் (முழு & தூள்)", items: [
-          "முழு மசாலா:","சீரகம்","கொத்தமல்லி விதை","வெந்தயம்","கடுகு","சோம்பு","மிளகு","கிராம்பு","பட்டை","ஏலக்காய்","பிரியாணி இலை","வரமிளகாய்","பெருங்காயம் (கட்டி / தூள்)",
-          "தூள் மசாலா:","மஞ்சள் தூள்","மிளகாய் தூள் (காஷ்மீரி / காரமானது)","கொத்தமல்லி தூள்","சீரகம் தூள்","கரம் மசாலா","சாட் மசாலா","சிக்கன் மசாலா","சாம்பார் பொடி","ரசம் பொடி","பிரியாணி மசாலா","கரம் மசாலா"
-        ]},
-        { title: "6. உப்பு, சர்க்கரை & இனிப்பு", items: ["சாதா உப்பு / அயோடின் உப்பு","கல் உப்பு","வெள்ளை சர்க்கரை","பிரவுன் சர்க்கரை","வெல்லம்","பனை வெல்லம்"] },
-        { title: "7. தின்பண்டங்கள் & ஸ்நாக்ஸ்", items: ["மிக்ஸ்சர்","சேவ்","நம்கீன்","மூங்க் டால்","பிஸ்கட் (பார்லே-ஜி, மேரி, மோனாகோ)","சிப்ஸ்","மாகி நூடுல்ஸ்","வறுத்த நிலக்கடலை","காக்ரா"] },
-        { title: "8. பானங்கள் & பால் பொருட்கள்", items: ["டீ தூள்","காபி தூள் (ப்ரூ, நெஸ்கேஃப்)","ஹார்லிக்ஸ் / போஸ்ட் / காம்ப்ளான்","பால் பவுடர்"] },
-        { title: "9. உலர்ந்த பழங்கள் & விதைகள்", items: ["முந்திரி","பாதாம்","திராட்சை","பேரீச்சம்பழம்"] },
-        { title: "10. இதர பேக்கேஜ்டு & வீட்டு பொருட்கள்", items: ["ஊறுகாய் (மாங்காய், எலுமிச்சை, மிக்ஸ்டு)","அப்பளம்","ஜாம் / சாஸ் / கெட்சப்","தேன்","வினிகர்","பேக்கிங் சோடா","சோப்பு / டிடர்ஜென்ட் பவுடர்","டிஷ்வாஷ்","அகர்பத்தி"] }
-      ],
-      en: [
-        { title: "1. Rice & Millets", items: ["Raw Rice","Boiled Rice","Idli Rice","Basmati Rice (Long / Premium)","Poha","Sago","Corn","Pearl Millet","Finger Millet","Dried Corn"] },
-        { title: "2. Pulses", items: ["Toor Dal","Moong Dal (Yellow Split)","Whole Green Gram","Urad Dal (Split)","Whole Black Urad","Chana Dal","White Chickpeas","Black Chickpeas","Masoor Dal","Dried Peas","Beans"] },
-        { title: "3. Flours", items: ["Wheat Flour","Maida","Gram Flour","Rava","Rice Flour","Ragi Flour","Corn Flour"] },
-        { title: "4. Oils & Ghee", items: ["Groundnut Oil","Sunflower Oil","Mustard Oil","Sesame Oil","Palm Oil","Ghee / Cow Ghee","Vanaspati / Dalda"] },
-        { title: "5. Spices (Whole & Powder)", items: [
-          "Whole Spices:","Cumin","Coriander Seeds","Fenugreek","Mustard","Fennel","Pepper","Cloves","Cinnamon","Cardamom","Biryani Leaf","Dry Red Chilli","Asafoetida (Lump / Powder)",
-          "Powder Spices:","Turmeric Powder","Chilli Powder (Kashmiri / Spicy)","Coriander Powder","Cumin Powder","Garam Masala","Chaat Masala","Chicken Masala","Sambar Powder","Rasam Powder","Biryani Masala","Garam Masala"
-        ]},
-        { title: "6. Salt, Sugar & Sweets", items: ["Table Salt / Iodized Salt","Rock Salt","White Sugar","Brown Sugar","Jaggery","Palm Jaggery"] },
-        { title: "7. Snacks & Namkeen", items: ["Mixture","Sev","Namkeen","Moong Dal","Biscuits (Parle-G, Marie, Monaco)","Chips","Maggi Noodles","Roasted Groundnuts","Kakra"] },
-        { title: "8. Beverages & Milk Products", items: ["Tea Powder","Coffee Powder (Bru, Nescafe)","Horlicks / Boost / Complan","Milk Powder"] },
-        { title: "9. Dry Fruits & Seeds", items: ["Cashew","Almond","Raisins","Dates"] },
-        { title: "10. Other Packaged & Household Items", items: ["Pickles (Mango, Lemon, Mixed)","Papad","Jam / Sauce / Ketchup","Honey","Vinegar","Baking Soda","Soap / Detergent Powder","Dishwash","Agarbatti"] }
-      ]
     };
 
     let currentLang = 'ta';
@@ -417,12 +448,27 @@
 
       document.title = translations[currentLang].title;
 
+      // Re-render the 10 buttons
+      renderSubsectionButtons();
+
       // Re-render open modal if any
       const modal = document.getElementById('modal');
       if (modal.classList.contains('active')) {
-        const idx = modal.dataset.subIndex;
-        if (idx !== undefined) openSubsectionModal(parseInt(idx));
+        const index = modal.dataset.subIndex;
+        openSubsectionModal(parseInt(index));
       }
+    }
+
+    function renderSubsectionButtons() {
+      const grid = document.querySelector('.subsections-grid');
+      grid.innerHTML = '';
+      translations[currentLang].subsectionTitles.forEach((title, index) => {
+        const btn = document.createElement('div');
+        btn.className = 'subsection-btn';
+        btn.textContent = title;
+        btn.onclick = () => openSubsectionModal(index);
+        grid.appendChild(btn);
+      });
     }
 
     function openSubsectionModal(index) {
@@ -431,14 +477,11 @@
       const listEl = document.getElementById('modal-list');
       const searchEl = document.getElementById('modal-search');
 
-      const isEnglish = currentLang === 'en';
-      const group = subsections[currentLang][index];
-
-      titleEl.textContent = group.title;
+      titleEl.textContent = translations[currentLang].subsectionTitles[index];
 
       listEl.innerHTML = '';
 
-      group.items.forEach(item => {
+      translations[currentLang].subsectionItems[index].forEach(item => {
         const li = document.createElement('li');
         li.className = 'item';
         li.textContent = item;
@@ -446,7 +489,7 @@
       });
 
       searchEl.value = '';
-      searchEl.placeholder = isEnglish ? 'Search items...' : 'பொருட்களை தேடுங்கள்...';
+      searchEl.placeholder = currentLang === 'en' ? 'Search items...' : 'பொருட்களை தேடுங்கள்...';
 
       modal.dataset.subIndex = index;
       modal.style.display = 'flex';
@@ -468,8 +511,9 @@
       });
     };
 
-    // Initial render
+    // Initial setup
     toggleLanguage();
+    renderSubsectionButtons(); // render buttons on load
   </script>
 </body>
 </html>
