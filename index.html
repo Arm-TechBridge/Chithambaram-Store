@@ -41,7 +41,7 @@
       line-height: 1.7;
       min-height: 100vh;
       background-size: 200% 200%, cover;
-      animation: backgroundShift 60s ease infinite;
+      animation: backgroundShift 80s ease infinite;
     }
 
     body.tamil { font-family: 'Noto Sans Tamil', 'Manrope', sans-serif; }
@@ -154,19 +154,19 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2rem 1.5rem;
+      padding: 2.2rem 1.8rem;
       text-align: center;
       cursor: pointer;
       box-shadow: var(--shadow);
       transition: var(--transition);
-      font-size: 1.45rem;
-      font-weight: 600;
+      font-size: 1.55rem;
+      font-weight: 700;
       color: var(--primary);
       position: relative;
       opacity: 0;
-      transform: translateX(-30px);
-      animation: slideIn 0.8s ease forwards;
-      animation-delay: calc(0.1s * var(--i));
+      transform: translateX(-40px);
+      animation: slideIn 0.9s ease forwards;
+      animation-delay: calc(0.12s * var(--i));
     }
 
     @keyframes slideIn {
@@ -181,27 +181,27 @@
       position: absolute;
       top: 1rem;
       left: 1.5rem;
-      font-size: 3.2rem;
+      font-size: 3.8rem;
       font-weight: 900;
-      opacity: 0.08;
+      opacity: 0.09;
       color: var(--primary);
       pointer-events: none;
     }
 
     .subsection-btn:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(15,118,110,0.18);
-      background: rgba(15,118,110,0.03);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(15,118,110,0.22);
+      background: linear-gradient(135deg, rgba(15,118,110,0.05), rgba(234,88,12,0.04));
     }
 
-    .subsection-btn:nth-child(odd) { border-left: 4px solid var(--primary); }
-    .subsection-btn:nth-child(even) { border-left: 4px solid var(--accent); }
+    .subsection-btn:nth-child(odd) { border-top: 6px solid var(--primary); }
+    .subsection-btn:nth-child(even) { border-top: 6px solid var(--accent); }
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(8px);
+      background: rgba(15,23,42,0.72);
+      backdrop-filter: blur(10px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -212,15 +212,15 @@
 
     .modal-content {
       background: white;
-      width: 90%;
-      max-width: 900px;
-      max-height: 90vh;
+      width: 92%;
+      max-width: 980px;
+      max-height: 92vh;
       border-radius: var(--radius);
       overflow-y: auto;
-      padding: 2.2rem;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.3);
+      padding: 2.8rem;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.38);
       transform: translateX(100%);
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .modal.active .modal-content { transform: translateX(0); }
@@ -229,29 +229,45 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(15,118,110,0.12);
     }
 
     .modal-title {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 2.5rem;
+      font-weight: 800;
       color: var(--primary);
+      letter-spacing: -0.5px;
     }
 
     .close-btn {
-      font-size: 2.8rem;
+      font-size: 3.2rem;
       cursor: pointer;
       color: #64748b;
-      line-height: 1;
+      transition: var(--transition);
+    }
+
+    .close-btn:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
     }
 
     .modal-search {
       width: 100%;
-      padding: 1.4rem;
-      font-size: 1.4rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 0.8rem;
-      margin-bottom: 2rem;
+      padding: 1.6rem;
+      font-size: 1.5rem;
+      border: 2px solid rgba(15,118,110,0.2);
+      border-radius: 1rem;
+      margin-bottom: 2.5rem;
+      transition: var(--transition);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .modal-search:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 5px rgba(15,118,110,0.15);
     }
 
     .modal-list {
@@ -261,27 +277,27 @@
     }
 
     .modal-list li {
-      padding: 1.2rem 1.4rem;
-      font-size: 1.3rem;
+      padding: 1.4rem 1.6rem;
+      font-size: 1.6rem;
       background: rgba(15,118,110,0.03);
-      margin: 0.6rem 0;
-      border-radius: 0.7rem;
+      margin: 0.8rem 0;
+      border-radius: 0.9rem;
       transition: background 0.2s;
       position: relative;
-      padding-left: 3rem;
+      padding-left: 3.5rem;
     }
 
     .modal-list li::before {
       content: '•';
       position: absolute;
-      left: 1.2rem;
-      top: 1.2rem;
+      left: 1.4rem;
+      top: 1.4rem;
       color: var(--primary);
-      font-size: 1.4rem;
+      font-size: 1.8rem;
     }
 
     .modal-list li:hover {
-      background: rgba(15,118,110,0.08);
+      background: rgba(15,118,110,0.09);
     }
 
     .modal-list li:nth-child(odd) { background: rgba(234,88,12,0.02); }
@@ -289,37 +305,37 @@
 
     .contact-finish {
       text-align: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--accent);
-      margin: 2rem 0;
-      font-weight: 600;
+      margin: 2.5rem 0 3rem;
+      font-weight: 700;
       line-height: 1.8;
     }
 
     .contact-address {
       text-align: center;
-      font-size: 1.2rem;
-      color: #475569;
-      margin-bottom: 3rem;
+      font-size: 1.25rem;
+      color: var(--text-light);
+      margin-bottom: 3.5rem;
     }
 
     footer {
       background: #f1f5f9;
-      padding: 4rem 1.5rem 2rem;
+      padding: 5rem 2rem 3rem;
       text-align: center;
       color: #475569;
-      font-size: 1rem;
+      font-size: 1.05rem;
       border-top: 1px solid var(--border);
     }
 
     @media (max-width: 768px) {
-      .store-name { font-size: 4.2rem; }
-      .main-slogan { font-size: 2.6rem; }
-      .modal-content { padding: 1.8rem; max-height: 95vh; }
-      .modal-title { font-size: 1.9rem; }
-      .modal-search { padding: 1.2rem; font-size: 1.3rem; }
-      .modal-list li { font-size: 1.2rem; padding: 1rem 1.2rem; padding-left: 2.8rem; }
-      .modal-list li::before { top: 1rem; font-size: 1.3rem; }
+      .store-name { font-size: 4.5rem; }
+      .main-slogan { font-size: 2.8rem; }
+      .modal-content { padding: 2rem; max-height: 94vh; }
+      .modal-title { font-size: 2rem; }
+      .modal-search { padding: 1.3rem; font-size: 1.35rem; }
+      .modal-list li { font-size: 1.4rem; padding: 1.2rem 1.3rem; padding-left: 3rem; }
+      .modal-list li::before { top: 1.2rem; font-size: 1.6rem; }
     }
   </style>
 </head>
@@ -501,13 +517,14 @@
 
     function renderSubsectionButtons() {
       const grid = document.getElementById('subsections-grid');
+      if (!grid) return;
       grid.innerHTML = '';
       translations[currentLang].subsectionTitles.forEach((title, index) => {
         const btn = document.createElement('div');
         btn.className = 'subsection-btn';
         btn.setAttribute('data-num', index + 1);
         btn.textContent = title;
-        btn.style --i = index;
+        btn.style.setProperty('--i', index);
         btn.onclick = () => openSubsectionModal(index);
         grid.appendChild(btn);
       });
@@ -554,8 +571,10 @@
     };
 
     // Initial setup
-    toggleLanguage();
-    renderSubsectionButtons();
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleLanguage();
+      renderSubsectionButtons();
+    });
   </script>
 </body>
 </html>
